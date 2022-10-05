@@ -1,11 +1,13 @@
 import { Router } from "express"
+import { createRent, deleteRent, getRentById, getRents, updateRent } from "../controllers/rents"
 
 const router = Router()
 
 //Rutas
-router.get('/rents', (req, res) => {})
-router.post('/rents', (req, res) => {})
-router.put('/rents', (req, res) => {})
-router.delete('/rents', (req, res) => {})
+router.get('/rents', getRents)
+router.get('/rents/:id', getRentById)
+router.post('/rents', createRent)
+router.put('/rents/:id', updateRent)
+router.delete('/rents/:id', deleteRent)
 
 export default router

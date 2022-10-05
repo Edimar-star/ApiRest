@@ -1,16 +1,5 @@
-import express from 'express'
-//import { pool } from './db'
-import documentsRoutes from './routes/documents'
-import purchasesRoutes from './routes/purchases'
-import rentsRoutes from './routes/rents'
-import usersRoutes from './routes/users'
+import app from './app';
+import { PORT } from './config'
 
-const app = express()
-
-//Rutas
-app.use(documentsRoutes)
-app.use(purchasesRoutes)
-app.use(rentsRoutes)
-app.use(usersRoutes)
-
-app.listen(300)
+app.listen(PORT)
+console.log('server running on port', PORT)

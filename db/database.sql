@@ -2,10 +2,10 @@ CREATE DATABASE IF NOT EXISTS gestionDocumental;
 
 USE gestionDocumental;
 
-CREATE TABLE Administradores (
+CREATE TABLE administradores (
     id int auto_increment,
     nombre varchar(50),
-    password varchar(50),
+    contraseña varchar(50),
     primary key (id)
 );
 
@@ -22,25 +22,44 @@ CREATE TABLE documentos (
     tipoDocumento int,
     cantidad int,
     precio float,
+    tipo varchar(50),
     descripcion varchar(100),
   	primary key (id),
   	foreign key (id) references tipoDocumento (id)
 );
 
 CREATE TABLE documentosFisicos (
-    codigo int, 
+    id int auto_increment,
+    codigo int,
+    nombre varchar(50),
+    autor varchar(50),
+    tipoDocumento int,
+    cantidad int,
+    precio float,
+    descripcion varchar(100),
+  	primary key (id),
+  	foreign key (id) references tipoDocumento (id),
   	foreign key (codigo) references documentos (id)
 );
 
 CREATE TABLE documentosElectronicos (
-    codigo int, 
+    id int auto_increment,
+    codigo int,
+    nombre varchar(50),
+    autor varchar(50),
+    tipoDocumento int,
+    cantidad int,
+    precio float,
+    descripcion varchar(100),
+  	primary key (id),
+  	foreign key (id) references tipoDocumento (id),
   	foreign key (codigo) references documentos (id)
 );
 
 CREATE TABLE clientes (
     id int auto_increment,
     nombre varchar(50) not null,
-    password varchar(50) not null,
+    contraseña varchar(50) not null,
   	primary key (id)
 );
 
