@@ -1,10 +1,8 @@
 import express from 'express'
-import documentsRoutes from './routes/documents'
-import purchasesRoutes from './routes/purchases'
-import rentsRoutes from './routes/rents'
-import usersRoutes from './routes/users'
-import adminsRoutes from './routes/admins'
-import { getUserById } from './controllers/users' 
+import authRutes from './routes/auth.js'
+import documentRoutes from './routes/documents.js'
+import purchaseRoutes from './routes/purchases.js'
+import rentRoutes from './routes/rents.js'
 
 const app = express()
 
@@ -13,11 +11,10 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 //Rutas
-app.use(documentsRoutes)
-app.use(purchasesRoutes)
-app.use(rentsRoutes)
-app.use(usersRoutes)
-app.use(adminsRoutes)
+app.use(authRutes)
+app.use(documentRoutes)
+app.use(purchaseRoutes)
+app.use(rentRoutes)
 
 //Route not found
 app.use((req, res, next) => {
@@ -25,3 +22,5 @@ app.use((req, res, next) => {
         message: 'endpoint nod found'
     })
 })
+
+export default app

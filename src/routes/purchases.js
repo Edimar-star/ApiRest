@@ -1,13 +1,12 @@
 import { Router } from "express"
-import { createPurchase, deletePurchase, getPurchaseById, getPurchases, updatePurchase } from "../controllers/purchases"
+import { createPurchase, getPurchases } from "../controllers/purchases.js"
+import { checkOrigin } from "../middlewares/origin.js"
+import { checkAuth } from "../middlewares/auth.js"
 
 const router = Router()
 
 //Rutas
-router.get('/purchases', getPurchases)
-router.get('/purchases/:id', getPurchaseById)
-router.post('/purchases', createPurchase)
-router.put('/purchases/:id', updatePurchase)
-router.delete('/purchases/:id', deletePurchase)
+router.get('/purchases/:id', checkAuth, checkOrigin, getPurchases)
+router.post('/purchases', checkAuth, checkOrigin, createPurchase)
 
 export default router

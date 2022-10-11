@@ -1,13 +1,12 @@
 import { Router } from "express"
-import { createRent, deleteRent, getRentById, getRents, updateRent } from "../controllers/rents"
+import { createRent, getRents } from "../controllers/rents.js"
+import { checkOrigin } from "../middlewares/origin.js"
+import { checkAuth } from "../middlewares/auth.js"
 
 const router = Router()
 
 //Rutas
-router.get('/rents', getRents)
-router.get('/rents/:id', getRentById)
-router.post('/rents', createRent)
-router.put('/rents/:id', updateRent)
-router.delete('/rents/:id', deleteRent)
+router.get('/rents/:id', checkAuth, checkOrigin, getRents)
+router.post('/rents', checkAuth, checkOrigin, createRent)
 
 export default router
