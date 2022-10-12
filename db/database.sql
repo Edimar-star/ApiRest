@@ -25,7 +25,7 @@ CREATE TABLE clientes (
     id int auto_increment,
     username varchar(50) not null,
     userPassword varchar(50) not null,
-    rol varchar(50) not null,
+    rol varchar(50) not null default 'user',
   	primary key (id)
 );
 
@@ -33,7 +33,6 @@ CREATE TABLE compras (
     id int auto_increment,
     idCliente int,
     idDocumento int,
-    cantidad int,
     total float,
     fecha DateTime,
   	primary key(id),
@@ -45,7 +44,6 @@ CREATE TABLE alquiles (
     id int auto_increment,
     idCliente int,
     idDocumento int,
-    cantidad int,
     total float,
     fechaInicioAlquile DateTime,
     fechaInicioFinAlquile DateTime,

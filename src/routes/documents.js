@@ -3,10 +3,12 @@ import { createDocument, getDocuments, updateDocument, deleteDocument } from "..
 import { checkOrigin } from "../middlewares/origin.js"
 import { checkAuth } from "../middlewares/auth.js"
 import { checkRoleAuth } from "../middlewares/roleAuth.js"
+import { getDocumentTypes } from "../controllers/documentType.js"
 
 const router = Router()
 
 //Rutas
+router.get('/documentTypes', checkAuth, checkOrigin, getDocumentTypes)
 router.get('/documents', checkAuth, checkOrigin, getDocuments)
 router.post('/documents', (req, res, next) => {
     checkAuth(req, res, next) 

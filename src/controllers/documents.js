@@ -1,7 +1,7 @@
 import { pool } from '../db.js'
 
 export const getDocuments = async (req, res) => {
-    const [rows] = await pool.query('SELECT * FROM documentos d, tipoDocumento td WHERE td.id = d.tipoDocumento')
+    const [rows] = await pool.query('SELECT * FROM documentos')
     res.json(rows);
 }
 

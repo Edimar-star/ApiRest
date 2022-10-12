@@ -43,15 +43,26 @@ export const registerCtrl = async (req, res) => {
         const { username, password } = req.body
 
         const passwordHash = await encrypt(password) //TODO: (123456)<--- Encriptando!!
-        const [rows] = await pool.query('INSERT INTO documentos (username, userPassword) VALUES (?, ?)', [username, passwordHash]);
+        const [rows] = await pool.query('INSERT INTO clientes (username, userPassword) VALUES (?, ?)', [username, passwordHash]);
 
         res.json({
             id: rows.insertId,
             username,
-            password: passwordHash
+            passwordHash
         })
 
     } catch (e) {
         httpError(res, e)
     }
+}
+
+export const getUserById = async(req, res) => {
+    const { username } = req.body;
+    const [rows] = await pool.query('SELECT * FROM clientes WHERE username = ?', [username]);
+    res.json(rows[0])
+}
+
+export const getUsers = async(req, res) => {
+    const [rows] = await pool.query('SELECT * FROM clientes');
+    res.json(rows)
 }

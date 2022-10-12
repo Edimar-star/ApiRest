@@ -1,6 +1,11 @@
 import { pool } from '../db.js'
 
 export const getRents = async (req, res) => {
+    const [rows] = await pool.query('SELECT * FROM alquiles')
+    res.json(rows);
+}
+
+export const getUserRents = async (req, res) => {
     const { id } = req.params;
     const [rows] = await pool.query('SELECT * FROM alquiles WHERE idCliente = ?', [id])
     res.json(rows);

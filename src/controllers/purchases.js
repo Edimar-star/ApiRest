@@ -1,5 +1,11 @@
 import { pool } from '../db.js'
 
+export const getUserPurchases = async (req, res) => {
+    const [rows] = await pool.query('SELECT * FROM compras')
+    res.json(rows);
+}
+
+
 export const getPurchases = async (req, res) => {
     const { id } = req.params;
     const [rows] = await pool.query('SELECT * FROM compras WHERE idCliente = ?', [id])
