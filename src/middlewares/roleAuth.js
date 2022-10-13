@@ -1,7 +1,8 @@
 import { verifyToken } from '../helpers/generateToken.js'
 import { pool } from '../db.js'
 
-export const checkRoleAuth = (roles) => async (req, res, next) => {
+const roles = ['admin']
+export const checkRoleAuth = async (req, res, next) => {
     try {
         const token = req.headers.authorization.split(' ').pop() //TODO: 231231321
         const tokenData = await verifyToken(token)

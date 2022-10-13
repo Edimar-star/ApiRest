@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs' //TODO: <--- 😎
 
 //TODO: Encriptamos!!
 export const encrypt = async (textPlain) => { //TODO: 123456
-    return await bcrypt.hash(textPlain, process.env.KEY_SALTOS) //0404o4ofoto4o
+    return await bcrypt.hash(textPlain, 10) //0404o4ofoto4o
 }
 
 //TODO: Comparamos!!
